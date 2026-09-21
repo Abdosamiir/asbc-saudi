@@ -1,0 +1,38 @@
+import Reveal from "@/shared/components/Reveal"
+
+import PillarPill from "./PillarPill"
+import { VISION_PILLARS, VISION_STATEMENT } from "../data/quality"
+
+/** Closing statement: the company vision and the pillars it rests on. */
+export default function VisionStatement() {
+  return (
+    <section className="bg-surface py-16 md:py-24">
+      <div className="container">
+        <Reveal>
+          <div className="relative mx-auto max-w-4xl">
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 font-serif text-[200px] leading-none text-brand/10"
+            >
+              &ldquo;
+            </span>
+
+            <blockquote className="relative text-center font-serif text-[28px] leading-9 font-normal text-brand italic md:text-4xl md:leading-10">
+              {VISION_STATEMENT}
+            </blockquote>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <ul className="mt-8 flex flex-wrap items-center justify-center gap-3 md:mt-12">
+            {VISION_PILLARS.map((pillar) => (
+              <li key={pillar}>
+                <PillarPill label={pillar} />
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      </div>
+    </section>
+  )
+}

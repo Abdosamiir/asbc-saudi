@@ -1,0 +1,774 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================================
+   ASBC SAUDI — DESIGN SYSTEM
+   ----------------------------------------------------------------------------
+   Three layers, in strict order. Components only ever touch layer 2 and 3.
+
+     1. PRIMITIVES  Raw brand ramps. Fixed values. Never used in a component.
+     2. SEMANTIC    Role-based tokens, remapped per theme and per surface.
+     3. COMPONENT   The shadcn contract, derived from layer 2.
+
+   Every foreground/background pair below is measured against WCAG 2.1:
+   body text >= 4.5:1, controls and focus indicators >= 3:1, in BOTH themes.
+   ========================================================================= */
+
+/* ---------------------------------------------------------------------------
+   LAYER 1 — PRIMITIVES
+   Tonal ramps, not roles. `bg-saudi-700` in a component is a bug: reach for a
+   semantic token instead, so the value can flip with the theme.
+   ------------------------------------------------------------------------ */
+@theme {
+  /* Saudi blue — the brand hue, 217deg, from tint to ink */
+  --color-saudi-50: #eef3ff;
+  --color-saudi-100: #dce7ff;
+  --color-saudi-200: #bbceff;
+  --color-saudi-300: #8fb2ff;
+  --color-saudi-400: #5b86f7;
+  --color-saudi-500: #3566f0;
+  --color-saudi-600: #1b4fe8;
+  --color-saudi-700: #003da5;
+  --color-saudi-800: #0d2b7a;
+  --color-saudi-900: #0d1b5e;
+  --color-saudi-950: #070e33;
+  --color-saudi-1000: #040818;
+
+  /* Signal gold — the accent hue, 38deg. 400 is the Figma gold. */
+  --color-gold-50: #fbf7ef;
+  --color-gold-100: #f5ecd9;
+  --color-gold-200: #ebd9b4;
+  --color-gold-300: #d9bc83;
+  --color-gold-400: #c8a96e;
+  --color-gold-500: #bfa06a;
+  --color-gold-600: #9c7f44;
+  --color-gold-700: #7a6231;
+  --color-gold-800: #5a4722;
+
+  /* Steel — blue-tinted neutrals so grays never read as muddy next to navy */
+  --color-steel-0: #ffffff;
+  --color-steel-50: #f4f6fc;
+  --color-steel-100: #e9edf7;
+  --color-steel-200: #d4daec;
+  --color-steel-300: #b8c0da;
+  --color-steel-400: #8a93b0;
+  --color-steel-500: #767e9c;
+  --color-steel-600: #656e8c;
+  --color-steel-700: #5a6280;
+  --color-steel-800: #343c57;
+  --color-steel-900: #141a2e;
+  --color-steel-1000: #080d1f;
+
+  /* Status — each role carries a light-surface and a dark-surface value */
+  --color-positive-light: #04663a;
+  --color-positive-dark: #5bd98d;
+  --color-caution-light: #8a5a00;
+  --color-caution-dark: #f3c15a;
+  --color-critical-light: #b42318;
+  --color-critical-dark: #ff8079;
+
+  /* Fixed brand marks — flag red never flips, it is a national mark */
+  --color-flag-red: #ce1126;
+  --color-flag-green: #006c35;
+
+  /* Figma palette aliases, kept so the brand names stay addressable */
+  --color-brand-primary: var(--color-saudi-700);
+  --color-brand-action: var(--color-saudi-600);
+  --color-brand-navy: var(--color-saudi-900);
+  --color-brand-ink: var(--color-saudi-950);
+  --color-brand-sky: #aac8e3;
+  --color-accent-gold: var(--color-gold-400);
+  --color-accent-gold-deep: var(--color-gold-500);
+  --color-accent-sand: #f0ede8;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+}
+
+/* ---------------------------------------------------------------------------
+   LAYER 2 + 3 — SEMANTIC AND COMPONENT TOKENS (utility bindings)
+   `inline` keeps the generated utilities pointing at the custom property, so a
+   theme class or a surface scope can rewrite them at runtime.
+   ------------------------------------------------------------------------ */
+@theme inline {
+  --font-sans: var(--font-dm-sans), sans-serif;
+  --font-heading: var(--font-sora), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  /* Surfaces — an elevation ladder, dimmest to brightest */
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface: var(--surface-base);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-overlay: var(--surface-overlay);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-surface-brand: var(--surface-brand);
+  --color-surface-accent: var(--surface-accent);
+
+  /* Content — text and icon roles, in descending prominence */
+  --color-heading: var(--content-heading);
+  --color-content: var(--content-primary);
+  --color-content-muted: var(--content-muted);
+  --color-content-subtle: var(--content-subtle);
+  --color-brand: var(--content-brand);
+  --color-gold: var(--content-gold);
+  --color-on-brand: var(--content-on-brand);
+  --color-on-gold: var(--content-on-gold);
+  --color-on-inverse: var(--content-on-inverse);
+
+  /* Lines — `line` is decorative, `line-strong` is the 3:1 control edge */
+  --color-line: var(--line-subtle);
+  --color-line-strong: var(--line-strong);
+  --color-line-brand: var(--line-brand);
+
+  /* Interactive fills */
+  --color-interactive: var(--interactive-brand);
+  --color-interactive-hover: var(--interactive-brand-hover);
+  --color-interactive-active: var(--interactive-brand-active);
+  --color-interactive-ghost: var(--interactive-ghost);
+  --color-interactive-ghost-strong: var(--interactive-ghost-strong);
+
+  /* Status */
+  --color-positive: var(--status-positive);
+  --color-positive-surface: var(--status-positive-surface);
+  --color-caution: var(--status-caution);
+  --color-caution-surface: var(--status-caution-surface);
+  --color-critical: var(--status-critical);
+  --color-critical-surface: var(--status-critical-surface);
+
+  /* Elevation — dark themes get a top highlight instead of a deeper shadow */
+  --shadow-e1: var(--elevation-1);
+  --shadow-e2: var(--elevation-2);
+  --shadow-e3: var(--elevation-3);
+  --shadow-e4: var(--elevation-4);
+  --shadow-glow-brand: var(--elevation-glow-brand);
+  --shadow-glow-gold: var(--elevation-glow-gold);
+
+  /* shadcn contract — layer 3, derived, never authored by hand */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-success: var(--status-positive);
+  --color-danger: var(--status-critical);
+  --color-info: var(--content-brand);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+}
+
+/* ---------------------------------------------------------------------------
+   LIGHT THEME
+   ------------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  --radius: 0.5rem;
+
+  --surface-sunken: var(--color-steel-50);
+  --surface-base: var(--color-steel-0);
+  --surface-raised: var(--color-steel-0);
+  --surface-overlay: var(--color-steel-0);
+  --surface-inverse: var(--color-saudi-900);
+  --surface-brand: var(--color-saudi-700);
+  --surface-accent: var(--color-accent-sand);
+  /* The bottom edge of every ink panel. SVG and canvas fills read this so a
+     decorative wave or particle field still tracks the theme. */
+  --ink-deep: var(--color-saudi-950);
+
+  --content-heading: var(--color-saudi-900); /* 15.7:1 on surface */
+  --content-primary: var(--color-steel-900); /* 17.3:1 */
+  --content-muted: var(--color-steel-700); /* 6.0:1 */
+  --content-subtle: var(--color-steel-600); /* 5.1:1 */
+  --content-brand: var(--color-saudi-700); /* 9.5:1 */
+  --content-gold: var(--color-gold-700); /* 5.8:1 — raw gold is 2.2:1 here */
+  --content-on-brand: var(--color-steel-0);
+  --content-on-gold: var(--color-saudi-900);
+  --content-on-inverse: var(--color-steel-0);
+
+  --line-subtle: rgb(13 27 94 / 12%);
+  --line-strong: var(--color-steel-500); /* 4.0:1 — control edges */
+  --line-brand: rgb(0 61 165 / 35%);
+
+  --interactive-brand: var(--color-saudi-600); /* white on it: 6.3:1 */
+  --interactive-brand-hover: var(--color-saudi-700); /* 9.5:1 */
+  --interactive-brand-active: var(--color-saudi-900); /* 15.7:1 */
+  --interactive-ghost: rgb(27 79 232 / 8%);
+  --interactive-ghost-strong: rgb(27 79 232 / 15%);
+
+  --status-positive: var(--color-positive-light);
+  --status-positive-surface: rgb(4 102 58 / 10%);
+  --status-caution: var(--color-caution-light);
+  --status-caution-surface: rgb(138 90 0 / 12%);
+  --status-critical: var(--color-critical-light);
+  --status-critical-surface: rgb(180 35 24 / 10%);
+
+  --elevation-1: 0 1px 2px rgb(7 14 51 / 6%), 0 1px 3px rgb(7 14 51 / 4%);
+  --elevation-2: 0 2px 4px rgb(7 14 51 / 6%), 0 4px 12px rgb(7 14 51 / 8%);
+  --elevation-3: 0 4px 8px rgb(7 14 51 / 6%), 0 12px 28px rgb(7 14 51 / 10%);
+  --elevation-4: 0 8px 16px rgb(7 14 51 / 8%), 0 24px 48px rgb(7 14 51 / 14%);
+  --elevation-glow-brand: 0 8px 28px rgb(27 79 232 / 22%);
+  --elevation-glow-gold: 0 8px 28px rgb(200 169 110 / 30%);
+
+  --gradient-brand: linear-gradient(
+    135deg,
+    var(--color-saudi-700) 0%,
+    var(--color-saudi-900) 100%
+  );
+  --gradient-ink: linear-gradient(
+    180deg,
+    var(--color-saudi-900) 0%,
+    var(--ink-deep) 100%
+  );
+  --gradient-gold: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-gold-400) 50%,
+    transparent 100%
+  );
+  --scrim: rgb(7 14 51 / 45%);
+}
+
+/* ---------------------------------------------------------------------------
+   DARK THEME
+   Lighter, desaturated tonal variants — not an inversion. The blue ramp climbs
+   to 300 for text so it clears 4.5:1; 600 is kept only as a filled button.
+   ------------------------------------------------------------------------ */
+.dark {
+  color-scheme: dark;
+
+  --surface-sunken: #05091a;
+  --surface-base: var(--color-steel-1000);
+  --surface-raised: #0e1530;
+  --surface-overlay: #161e3c;
+  --surface-inverse: #0b1228;
+  --surface-brand: var(--color-saudi-800);
+  --surface-accent: rgb(200 169 110 / 12%);
+  --ink-deep: #05091a;
+
+  --content-heading: #e8edfa; /* 16.5:1 on base */
+  --content-primary: #f2f5fc; /* 17.7:1 */
+  --content-muted: #aebad6; /* 9.9:1 */
+  --content-subtle: #93a1c4; /* 6.9:1 */
+  --content-brand: var(--color-saudi-300); /* 8.5:1 — 600 would be 3.0:1 */
+  --content-gold: var(--color-gold-300); /* 9.8:1 */
+  --content-on-brand: var(--color-steel-0);
+  --content-on-gold: var(--color-saudi-950);
+  --content-on-inverse: var(--color-steel-0);
+
+  --line-subtle: rgb(255 255 255 / 12%);
+  --line-strong: #626fa3; /* 4.0:1 — control edges */
+  --line-brand: rgb(143 178 255 / 40%);
+
+  --interactive-brand: #2e5fe8; /* white on it: 5.4:1 */
+  --interactive-brand-hover: var(--color-saudi-500); /* 4.9:1 */
+  --interactive-brand-active: #2452d6; /* 6.5:1 */
+  --interactive-ghost: rgb(255 255 255 / 8%);
+  --interactive-ghost-strong: rgb(255 255 255 / 16%);
+
+  --status-positive: var(--color-positive-dark);
+  --status-positive-surface: rgb(91 217 141 / 14%);
+  --status-caution: var(--color-caution-dark);
+  --status-caution-surface: rgb(243 193 90 / 14%);
+  --status-critical: var(--color-critical-dark);
+  --status-critical-surface: rgb(255 128 121 / 14%);
+
+  /* Shadows read as nothing on dark. Pair them with a 1px top highlight so
+     raised surfaces still catch an implied light source. */
+  --elevation-1:
+    inset 0 1px 0 rgb(255 255 255 / 4%), 0 1px 2px rgb(0 0 0 / 40%);
+  --elevation-2:
+    inset 0 1px 0 rgb(255 255 255 / 5%), 0 4px 12px rgb(0 0 0 / 45%);
+  --elevation-3:
+    inset 0 1px 0 rgb(255 255 255 / 6%), 0 12px 28px rgb(0 0 0 / 50%);
+  --elevation-4:
+    inset 0 1px 0 rgb(255 255 255 / 8%), 0 24px 48px rgb(0 0 0 / 60%);
+  --elevation-glow-brand: 0 8px 32px rgb(46 95 232 / 40%);
+  --elevation-glow-gold: 0 8px 32px rgb(200 169 110 / 26%);
+
+  --gradient-brand: linear-gradient(135deg, #14306e 0%, #0b1228 100%);
+  --gradient-ink: linear-gradient(180deg, #0b1228 0%, var(--ink-deep) 100%);
+  --scrim: rgb(2 5 16 / 70%);
+}
+
+/* ---------------------------------------------------------------------------
+   LAYER 3 — COMPONENT CONTRACT
+   Derived for both themes at once. Nothing here holds a literal color.
+   ------------------------------------------------------------------------ */
+:root,
+.dark {
+  --heading: var(--content-heading);
+  --background: var(--surface-base);
+  --foreground: var(--content-primary);
+  --card: var(--surface-raised);
+  --card-foreground: var(--content-primary);
+  --popover: var(--surface-overlay);
+  --popover-foreground: var(--content-primary);
+  --primary: var(--interactive-brand);
+  --primary-foreground: var(--content-on-brand);
+  --secondary: var(--surface-sunken);
+  --secondary-foreground: var(--content-brand);
+  --muted: var(--surface-sunken);
+  --muted-foreground: var(--content-muted);
+  --accent: var(--surface-accent);
+  --accent-foreground: var(--content-heading);
+  --destructive: var(--status-critical);
+  --border: var(--line-subtle);
+  --input: var(--line-strong);
+  --ring: var(--content-brand);
+  --sidebar: var(--surface-sunken);
+  --sidebar-foreground: var(--content-primary);
+  --sidebar-primary: var(--interactive-brand);
+  --sidebar-primary-foreground: var(--content-on-brand);
+  --sidebar-accent: var(--surface-accent);
+  --sidebar-accent-foreground: var(--content-heading);
+  --sidebar-border: var(--line-subtle);
+  --sidebar-ring: var(--content-brand);
+  --chart-1: var(--interactive-brand);
+  --chart-2: var(--content-brand);
+  --chart-3: var(--color-brand-sky);
+  --chart-4: var(--content-gold);
+  --chart-5: var(--status-positive);
+}
+
+/* ---------------------------------------------------------------------------
+   SURFACE SCOPES
+   A panel that carries its own palette. Applying one rewrites the semantic
+   tokens for everything inside, so children keep using `text-content-muted`
+   instead of guessing at `text-white/70`. These read identically in both
+   themes, which is what makes the navy sections theme-proof.
+   ------------------------------------------------------------------------ */
+@utility surface-inverse {
+  background-color: var(--surface-inverse);
+  color: var(--content-primary);
+
+  --surface-sunken: color-mix(in oklab, var(--surface-inverse) 82%, black);
+  --surface-base: var(--surface-inverse);
+  --surface-raised: color-mix(in oklab, var(--surface-inverse) 88%, white);
+  --surface-overlay: color-mix(in oklab, var(--surface-inverse) 80%, white);
+  --surface-accent: rgb(200 169 110 / 14%);
+
+  --content-heading: #ffffff; /* 15.7:1 on navy */
+  --content-primary: #ffffff;
+  --content-muted: #c7d0e8; /* 10.2:1 */
+  --content-subtle: #a9b4d6; /* 7.6:1 */
+  --content-brand: var(--color-saudi-300); /* 6.0:1 */
+  --content-gold: var(--color-gold-300); /* 8.6:1 */
+  --content-on-brand: #ffffff;
+
+  --line-subtle: rgb(255 255 255 / 14%);
+  --line-strong: #6373b4; /* 3.5:1 */
+  --line-brand: rgb(143 178 255 / 45%);
+
+  /* The 600 blue is only 2.5:1 against navy, so a button or a bullet drawn in
+     it loses its shape. The scope climbs one step to 500 and, as in the light
+     theme, presses deeper rather than brighter — a lighter hover cannot hold
+     4.5:1 under white label text. */
+  --interactive-brand: var(--color-saudi-500); /* 3.2:1 shape, 4.9:1 label */
+  --interactive-brand-hover: var(--color-saudi-600); /* 6.3:1 label */
+  --interactive-brand-active: var(--color-saudi-700); /* 9.5:1 label */
+  --interactive-ghost: rgb(255 255 255 / 10%);
+  --interactive-ghost-strong: rgb(255 255 255 / 20%);
+
+  /* Status reads off a dark field here whatever the page theme is. */
+  --status-positive: var(--color-positive-dark); /* 8.8:1 */
+  --status-positive-surface: rgb(91 217 141 / 16%);
+  --status-caution: var(--color-caution-dark); /* 9.4:1 */
+  --status-caution-surface: rgb(243 193 90 / 16%);
+  --status-critical: var(--color-critical-dark); /* 6.5:1 */
+  --status-critical-surface: rgb(255 128 121 / 16%);
+
+  --elevation-1:
+    inset 0 1px 0 rgb(255 255 255 / 5%), 0 1px 2px rgb(0 0 0 / 35%);
+  --elevation-2:
+    inset 0 1px 0 rgb(255 255 255 / 6%), 0 4px 12px rgb(0 0 0 / 40%);
+  --elevation-3:
+    inset 0 1px 0 rgb(255 255 255 / 7%), 0 12px 28px rgb(0 0 0 / 45%);
+  --elevation-4:
+    inset 0 1px 0 rgb(255 255 255 / 9%), 0 24px 48px rgb(0 0 0 / 55%);
+
+  --background: var(--surface-base);
+  --foreground: var(--content-primary);
+  --card: var(--surface-raised);
+  --card-foreground: var(--content-primary);
+  --popover: var(--surface-overlay);
+  --popover-foreground: var(--content-primary);
+  --secondary: var(--surface-raised);
+  --secondary-foreground: var(--content-primary);
+  --muted: var(--surface-raised);
+  --muted-foreground: var(--content-muted);
+  --accent: var(--surface-accent);
+  --accent-foreground: var(--content-primary);
+  --heading: var(--content-heading);
+  --border: var(--line-subtle);
+  --input: var(--line-strong);
+  --ring: var(--content-brand);
+  --primary: var(--interactive-brand);
+  --primary-foreground: var(--content-on-brand);
+  --destructive: var(--status-critical);
+}
+
+/* The deepest scope — hero and footer ink, one step below the navy panel. */
+@utility surface-ink {
+  @apply surface-inverse;
+  --surface-inverse: var(--ink-deep);
+  background-color: var(--ink-deep);
+}
+
+/* Saudi-blue panel. Its field is much lighter than navy, so the values the
+   inverse scope tuned against navy lose their margin here and are restated. */
+@utility surface-brand {
+  @apply surface-inverse;
+  --surface-inverse: var(--surface-brand);
+  background-color: var(--surface-brand);
+
+  --line-strong: #93a9dc; /* 4.1:1 — #6373b4 drops to 2.1:1 here */
+  --status-critical: #ffb3ad; /* 5.6:1 — #ff8079 drops to 3.9:1 here */
+  --status-critical-surface: rgb(255 179 173 / 18%);
+
+  /* A blue fill cannot hold its shape on a blue field, so the primary action
+     climbs above the panel and takes ink-coloured labels. */
+  --interactive-brand: var(--color-saudi-300); /* 4.5:1 shape */
+  --interactive-brand-hover: var(--color-saudi-200); /* 6.1:1 shape */
+  --interactive-brand-active: #7aa3ff;
+  --content-on-brand: var(--color-saudi-950); /* 8.9:1 label */
+
+  --primary: var(--interactive-brand);
+  --primary-foreground: var(--content-on-brand);
+  --destructive: var(--status-critical);
+  --input: var(--line-strong);
+}
+
+/* Resets the scope back to the page palette — for a light card sitting inside
+   a navy section. Without it, nesting inherits the inverted tokens. */
+@utility surface-default {
+  background-color: var(--surface-raised);
+  color: var(--content-primary);
+}
+
+@utility surface-gradient-ink {
+  @apply surface-inverse;
+  background: var(--gradient-ink);
+}
+
+@utility surface-gradient-brand {
+  @apply surface-inverse;
+  background: var(--gradient-brand);
+}
+
+/* A hairline that fades out at both ends — section dividers. */
+@utility rule-gold {
+  height: 1px;
+  background: var(--gradient-gold);
+  border: 0;
+}
+
+@utility scrim {
+  background-color: var(--scrim);
+}
+
+/* ---------------------------------------------------------------------------
+   BASE
+   ------------------------------------------------------------------------ */
+@layer base {
+  * {
+    @apply border-border outline-ring/40;
+  }
+  html {
+    @apply font-sans antialiased;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  :where(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--font-sora), sans-serif;
+    font-weight: 700;
+    color: var(--heading);
+  }
+  button:not(:disabled):not([aria-disabled="true"]),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  /* One focus treatment for the whole system, legible on every surface. */
+  :where(
+    a,
+    button,
+    [role="button"],
+    input,
+    select,
+    textarea,
+    summary,
+    [tabindex]
+  ):focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  ::selection {
+    background-color: var(--interactive-brand);
+    color: var(--content-on-brand);
+  }
+
+  ::placeholder {
+    color: var(--content-subtle);
+  }
+
+  * {
+    scrollbar-color: var(--line-strong) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--line-strong);
+    border: 2px solid transparent;
+    background-clip: content-box;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--content-subtle);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+/* ---------------------------------------------------------------------------
+   LAYOUT — THE PAGE RAIL
+   ----------------------------------------------------------------------------
+   One horizontal rail for the whole site. Header, hero, every section and the
+   footer all use `container`, so their content edges line up down the page.
+
+   Tailwind's stock `container` only sets a max-width that STEPS at each
+   breakpoint — it never centers and never pads. That left every section flush
+   to the viewport edge on mobile and hard against the left edge on desktop.
+   This override makes it fluid, centered and gutter-padded, capped at the
+   1280px content width of the 1440px Figma artboard.
+
+   NOTE: Tailwind still emits its stepped `max-width` rules; it merges this
+   block in rather than replacing them. The override below is emitted AFTER
+   those steps at equal specificity, so it wins at every width. Verify that
+   ordering in the built CSS if the rail ever starts jumping at breakpoints.
+   ------------------------------------------------------------------------ */
+/* The rail is fluid between gutters and stops growing at --rail-max, so the
+   jump-at-each-breakpoint behaviour of the stock container disappears. */
+:root {
+  --rail-max: 80rem; /* 1280px — content width of the 1440px artboard */
+  --rail-gutter: 1.25rem; /* 20px on phones */
+}
+@media (width >= 40rem) {
+  :root {
+    --rail-gutter: 1.5rem; /* 24px */
+  }
+}
+@media (width >= 64rem) {
+  :root {
+    --rail-gutter: 2rem; /* 32px */
+  }
+}
+
+@utility container {
+  width: 100%;
+  max-width: var(--rail-max);
+  margin-inline: auto;
+  padding-inline: var(--rail-gutter);
+}
+
+@utility type-display-xl {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 3.75rem;
+  line-height: 3.75rem;
+  font-weight: 800;
+  letter-spacing: 0rem;
+}
+
+@utility type-display-lg {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 3rem;
+  line-height: 3rem;
+  font-weight: 800;
+  letter-spacing: 0rem;
+}
+
+@utility type-display-md {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 0rem;
+}
+
+@utility type-heading-xl {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0rem;
+}
+
+@utility type-heading-lg {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  letter-spacing: 0rem;
+}
+
+@utility type-heading-md {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0rem;
+}
+
+@utility type-heading-sm {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0rem;
+}
+
+@utility type-heading-xs {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0rem;
+}
+
+@utility type-body-lg {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 400;
+  letter-spacing: 0rem;
+}
+
+@utility type-body-md {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 1rem;
+  line-height: 1.625rem;
+  font-weight: 400;
+  letter-spacing: 0rem;
+}
+
+@utility type-body-sm {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0rem;
+}
+
+@utility type-body-xs {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0rem;
+}
+
+@utility type-label-md {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.021875rem;
+}
+
+@utility type-label-sm {
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01875rem;
+}
+
+@utility type-eyebrow-md {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.075rem;
+  text-transform: uppercase;
+}
+
+@utility type-eyebrow-sm {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.625rem;
+  line-height: 0.9375rem;
+  font-weight: 400;
+  letter-spacing: 0.0875rem;
+  text-transform: uppercase;
+}
+
+@utility type-data-md {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0rem;
+}
+
+@utility type-data-bold {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0rem;
+}
+
+@keyframes client-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
