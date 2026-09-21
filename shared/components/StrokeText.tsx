@@ -48,6 +48,19 @@ interface StrokeTextBox {
 
 const DEFAULT_TEXT = "Draw Attention"
 
+/*
+ * Arabic is cursive: its letters only take their joined forms when they are
+ * shaped together. WebKit (every browser on iOS) shapes each <tspan> on its
+ * own, so a tspan per character leaves every letter isolated. Joining scripts
+ * therefore draw word by word, with the space riding on the word before it.
+ */
+const JOINING_SCRIPT = /[\u0600-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/
+
+const splitIntoSegments = (text: string): string[] =>
+  JOINING_SCRIPT.test(text)
+    ? (text.match(/\S+\s*|\s+/g) ?? [])
+    : Array.from(text)
+
 /**
  * React Bits' StrokeText — the glyphs draw themselves as outlines, then the
  * fill arrives behind a wipe (or a fade).
@@ -83,7 +96,7 @@ const StrokeText = ({
   const rawId = useId()
   const wipeId = `stroke-text-wipe-${rawId.replace(/[^a-zA-Z0-9_-]/g, "")}`
 
-  const characters = useMemo(() => Array.from(String(text ?? "")), [text])
+  const segments = useMemo(() => splitIntoSegments(String(text ?? "")), [text])
 
   const dash = Math.max(fontSize * 7, 200)
 
@@ -141,7 +154,7 @@ const StrokeText = ({
     return () => {
       cancelled = true
     }
-  }, [characters, fontSize, fontWeight, letterSpacing, strokeWidth])
+  }, [segments, fontSize, fontWeight, letterSpacing, strokeWidth])
 
   useEffect(() => {
     const root = rootRef.current
@@ -291,7 +304,7 @@ const StrokeText = ({
   return (
     <span
       ref={rootRef}
-      className={`block w-full leading-[0] ${trigger === "hover" ? "cursor-pointer" : ""} ${className}`.trim()}
+      className={`block w-full leading-0 ${trigger === "hover" ? "cursor-pointer" : ""} ${className}`.trim()}
       style={style}
       role="img"
       aria-label={String(text ?? "")}
@@ -331,9 +344,9 @@ const StrokeText = ({
           strokeLinecap="round"
           style={{ ...fontStyle, fill: "none", stroke: strokeColor }}
         >
-          {characters.map((char, index) => (
+          {segments.map((segment, index) => (
             <tspan data-stroke-char key={`s-${index}`}>
-              {char}
+              {segment}
             </tspan>
           ))}
         </text>
@@ -345,9 +358,9 @@ const StrokeText = ({
           style={{ ...fontStyle, fill: fillColor, stroke: "none" }}
           clipPath={fillMode === "wipe" && box ? `url(#${wipeId})` : undefined}
         >
-          {characters.map((char, index) => (
+          {segments.map((segment, index) => (
             <tspan data-fill-char key={`f-${index}`}>
-              {char}
+              {segment}
             </tspan>
           ))}
         </text>
