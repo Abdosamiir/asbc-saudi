@@ -1,8 +1,9 @@
 "use client"
 
 import { cn } from "cn"
+import { useTranslations } from "next-intl"
 
-import { projectFilters } from "./data/project-filters"
+import { ALL_PROJECTS_FILTER, projectFilters } from "./data/project-filters"
 
 type ProjectFiltersProps = {
   activeFilter: string
@@ -13,17 +14,20 @@ export default function ProjectFilters({
   activeFilter,
   onFilterChange,
 }: ProjectFiltersProps) {
+  // Translation
+  const t = useTranslations("ProjectsCompleted")
+
   return (
     <div className="flex flex-wrap items-center justify-center gap-2">
-      {projectFilters.map(({ label }) => {
-        const isActive = activeFilter === label
+      {projectFilters.map(({ id }) => {
+        const isActive = activeFilter === id
 
         return (
           <button
-            key={label}
+            key={id}
             type="button"
             aria-pressed={isActive}
-            onClick={() => onFilterChange(label)}
+            onClick={() => onFilterChange(id)}
             className={cn(
               "min-h-11 rounded-xl border px-4 py-2 type-label-md transition-colors duration-200",
               "focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none",
@@ -32,7 +36,7 @@ export default function ProjectFilters({
                 : "border-line bg-surface-raised text-content hover:border-line-brand/30"
             )}
           >
-            {label}
+            {id === ALL_PROJECTS_FILTER ? t("filterAll") : id}
           </button>
         )
       })}

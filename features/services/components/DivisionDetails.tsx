@@ -1,6 +1,7 @@
 "use client"
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
+import { useTranslations } from "next-intl"
 import { Card, CardContent } from "@/shared/components/ui/card"
 import CapabilityList from "./CapabilityList"
 import type { Division } from "../data/divisions"
@@ -17,7 +18,13 @@ export default function DivisionDetails({
   panelId,
   tabId,
 }: DivisionDetailsProps) {
+  // Translation
+  const t = useTranslations("ServiceDivisions")
+  const tCapabilities = useTranslations("DivisionCapabilities")
+  // Custom hooks
   const reduceMotion = useReducedMotion()
+  // Variables
+  const capabilities = division.capabilities.map((key) => tCapabilities(key))
 
   return (
     <Card className="h-full min-w-0 border border-border bg-surface-raised shadow-none ring-0 sm:[--card-spacing:--spacing(8)]">
@@ -43,25 +50,22 @@ export default function DivisionDetails({
               </span>
 
               <h3 className="type-heading-lg text-balance text-brand">
-                {division.title}
+                {t(`divisions.${division.key}.title`)}
               </h3>
             </div>
 
             <p className="mt-6 type-body-md text-content">
-              {division.description}
+              {t(`divisions.${division.key}.description`)}
             </p>
 
             <div aria-hidden className="mt-6 h-0.5 w-10 bg-accent-gold" />
 
-            <h4 className="mt-6 font-heading text-sm leading-5 font-bold tracking-[0.04375rem] text-muted-foreground uppercase">
-              Capabilities
+            <h4 className="mt-6 font-heading text-sm leading-5 font-bold tracking-[0.04375rem] text-muted-foreground uppercase rtl:tracking-normal">
+              {t("capabilitiesHeading")}
             </h4>
 
             <div className="mt-4">
-              <CapabilityList
-                key={division.id}
-                capabilities={division.capabilities}
-              />
+              <CapabilityList key={division.id} capabilities={capabilities} />
             </div>
           </motion.div>
         </AnimatePresence>

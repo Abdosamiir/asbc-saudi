@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useForm, useWatch } from "react-hook-form"
 import { cn } from "cn"
+import { useTranslations } from "next-intl"
 
 import { Button } from "@/shared/components/ui/button"
 import { Input, inputVariants } from "@/shared/components/ui/input"
@@ -15,6 +16,7 @@ export type InquiryFormValues = {
   companyName: string
   email: string
   phone: string
+  /** One of `SERVICE_OPTIONS`, so the value is the same in every locale. */
   serviceInterest: string
   message: string
 }
@@ -31,6 +33,9 @@ const DEFAULT_VALUES: InquiryFormValues = {
 /** Shared control styling: the design-system input at the Figma corner radius. */
 const controlClassName = cn(inputVariants(), "rounded-xl")
 
+/** Emails and phone numbers are typed left-to-right, even on the Arabic site. */
+const latinControlClassName = cn(controlClassName, "rtl:text-right")
+
 /**
  * The "Send an Inquiry" form.
  *
@@ -39,6 +44,11 @@ const controlClassName = cn(inputVariants(), "rounded-xl")
  * `values` is already the complete, validated payload.
  */
 export default function InquiryForm() {
+  // Translation
+  const t = useTranslations("InquiryForm")
+  // State
+  const [isSent, setIsSent] = useState(false)
+  // Form
   const {
     register,
     handleSubmit,
@@ -49,10 +59,10 @@ export default function InquiryForm() {
     defaultValues: DEFAULT_VALUES,
     mode: "onBlur",
   })
-  const [isSent, setIsSent] = useState(false)
-
+  // Variables
   const messageLength = useWatch({ control, name: "message" }).length
 
+  // Functions
   function onSubmit(values: InquiryFormValues) {
     // TODO: POST `values` to the inquiries endpoint once it exists.
     void values
@@ -62,7 +72,7 @@ export default function InquiryForm() {
 
   return (
     <div className="rounded-2xl border border-border bg-surface-raised p-5 sm:p-6 xl:p-8">
-      <h3 className="type-heading-sm text-brand">Send an Inquiry</h3>
+      <h3 className="type-heading-sm text-brand">{t("title")}</h3>
 
       <form
         noValidate
@@ -71,37 +81,38 @@ export default function InquiryForm() {
         className="mt-6 flex flex-col gap-5"
       >
         <Input
-          label="Full Name"
+          label={t("fullNameLabel")}
           required
-          placeholder="Your full name"
+          placeholder={t("fullNamePlaceholder")}
           className={controlClassName}
           error={errors.fullName?.message}
-          {...register("fullName", { required: "Full name is required." })}
+          {...register("fullName", { required: t("fullNameRequired") })}
         />
 
         <Input
-          label="Company Name"
+          label={t("companyNameLabel")}
           required
-          placeholder="Your company name"
+          placeholder={t("companyNamePlaceholder")}
           className={controlClassName}
           error={errors.companyName?.message}
           {...register("companyName", {
-            required: "Company name is required.",
+            required: t("companyNameRequired"),
           })}
         />
 
         <Input
-          label="Email Address"
+          label={t("emailLabel")}
           type="email"
+          dir="ltr"
           required
-          placeholder="your.email@company.com"
-          className={controlClassName}
+          placeholder={t("emailPlaceholder")}
+          className={latinControlClassName}
           error={errors.email?.message}
           {...register("email", {
-            required: "Email address is required.",
+            required: t("emailRequired"),
             pattern: {
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: "Enter a valid email address.",
+              message: t("emailInvalid"),
             },
           })}
         />
@@ -109,13 +120,14 @@ export default function InquiryForm() {
         <Input
           label={
             <>
-              Phone Number{" "}
-              <span className="text-muted-foreground">(Optional)</span>
+              {t("phoneLabel")}{" "}
+              <span className="text-muted-foreground">{t("optional")}</span>
             </>
           }
           type="tel"
-          placeholder="+966 5XX XXX XXXX"
-          className={controlClassName}
+          dir="ltr"
+          placeholder={t("phonePlaceholder")}
+          className={latinControlClassName}
           {...register("phone")}
         />
 
@@ -124,19 +136,19 @@ export default function InquiryForm() {
             htmlFor="serviceInterest"
             className="type-label-md text-foreground"
           >
-            Service Interest
+            {t("serviceLabel")}
           </label>
 
           <select
             id="serviceInterest"
-            className={cn(controlClassName, "pr-8 text-content")}
+            className={cn(controlClassName, "pe-8 text-content")}
             {...register("serviceInterest")}
           >
-            <option value="">Select a service...</option>
+            <option value="">{t("servicePlaceholder")}</option>
 
             {SERVICE_OPTIONS.map((service) => (
               <option key={service} value={service}>
-                {service}
+                {t(`services.${service}`)}
               </option>
             ))}
           </select>
@@ -144,7 +156,7 @@ export default function InquiryForm() {
 
         <div className="grid gap-2">
           <label htmlFor="message" className="type-label-md text-foreground">
-            Project Brief / Message
+            {t("messageLabel")}
             <span aria-hidden="true" className="ms-1 text-danger">
               *
             </span>
@@ -156,13 +168,13 @@ export default function InquiryForm() {
             required
             aria-invalid={Boolean(errors.message)}
             aria-describedby={errors.message ? "message-error" : "message-hint"}
-            placeholder={`Tell us about your project requirements... (minimum ${MESSAGE_MIN_LENGTH} characters)`}
+            placeholder={t("messagePlaceholder", { min: MESSAGE_MIN_LENGTH })}
             className={cn(controlClassName, "h-auto resize-y py-3")}
             {...register("message", {
-              required: "A short project brief is required.",
+              required: t("messageRequired"),
               minLength: {
                 value: MESSAGE_MIN_LENGTH,
-                message: `Please use at least ${MESSAGE_MIN_LENGTH} characters.`,
+                message: t("messageTooShort", { min: MESSAGE_MIN_LENGTH }),
               },
             })}
           />
@@ -177,7 +189,10 @@ export default function InquiryForm() {
             </p>
           ) : (
             <p id="message-hint" className="type-body-xs text-muted-foreground">
-              {messageLength}/{MESSAGE_MIN_LENGTH} characters minimum
+              {t("messageHint", {
+                count: messageLength,
+                min: MESSAGE_MIN_LENGTH,
+              })}
             </p>
           )}
         </div>
@@ -187,7 +202,7 @@ export default function InquiryForm() {
           size="lg"
           className="h-12 w-full rounded-2xl text-base"
         >
-          Send Inquiry →
+          {t("submit")}
         </Button>
 
         <p
@@ -195,7 +210,7 @@ export default function InquiryForm() {
           aria-live="polite"
           className={isSent ? "type-body-sm text-success" : "sr-only"}
         >
-          {isSent ? "Thank you — we will be in touch within 24 hours." : ""}
+          {isSent ? t("success") : ""}
         </p>
       </form>
     </div>

@@ -1,18 +1,19 @@
 "use client"
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useTranslations } from "next-intl"
+import { Link, usePathname } from "@/shared/i18n/navigation"
+import { ROUTES, type RouteKey } from "@/shared/lib/routes"
 import { cn } from "@/shared/lib/utils"
 import { SheetClose } from "../ui/sheet"
 
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Projects", href: "/projects" },
-  { label: "Clients", href: "/clients" },
-  { label: "Quality", href: "/quality" },
-  { label: "Contact", href: "/contact" },
+const NAV_ITEMS: RouteKey[] = [
+  "home",
+  "about",
+  "services",
+  "projects",
+  "clients",
+  "quality",
+  "contact",
 ]
 
 type NavLinksProps = {
@@ -20,22 +21,26 @@ type NavLinksProps = {
 }
 
 export default function NavLinks({ mobile = false }: NavLinksProps) {
+  // Translation
+  const t = useTranslations("Navigation")
+  // Navigation
   const pathname = usePathname()
 
   return (
     <nav
-      aria-label={mobile ? "Mobile navigation" : "Main navigation"}
+      aria-label={mobile ? t("mobileLabel") : t("mainLabel")}
       className={
         mobile ? "flex flex-col px-6" : "flex items-center gap-5 xl:gap-7"
       }
     >
-      {navItems.map((item) => {
-        const isActive = pathname === item.href
+      {NAV_ITEMS.map((item) => {
+        const href = ROUTES[item]
+        const isActive = pathname === href
 
         const link = (
           <Link
-            key={item.href}
-            href={item.href}
+            key={href}
+            href={href}
             aria-current={isActive ? "page" : undefined}
             className={cn(
               "font-medium transition-colors duration-200 hover:text-heading",
@@ -46,13 +51,13 @@ export default function NavLinks({ mobile = false }: NavLinksProps) {
               isActive && !mobile && "border-brand"
             )}
           >
-            {item.label}
+            {t(item)}
           </Link>
         )
 
         return mobile ? (
           <SheetClose
-            key={item.href}
+            key={href}
             render={link}
             nativeButton={false}
             role="link"

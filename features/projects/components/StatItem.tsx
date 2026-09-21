@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl"
+
 import CountUp from "@/features/home/components/countup"
 
 import type { ProjectStat } from "./data/project-stats"
@@ -13,7 +15,12 @@ type StatItemProps = {
  * mirrored in a screen-reader-only copy and the animated one is hidden.
  */
 export function StatItem({ stat }: StatItemProps) {
-  const { value, suffix = "", label } = stat
+  // Translation
+  const t = useTranslations("ProjectStats")
+  const tUnits = useTranslations("Units")
+  // Variables
+  const { key, value, unit } = stat
+  const suffix = unit ? tUnits(unit) : ""
 
   return (
     <div className="flex flex-col gap-2 text-center">
@@ -26,7 +33,7 @@ export function StatItem({ stat }: StatItemProps) {
         </span>
       </p>
 
-      <p className="type-body-sm text-muted-foreground">{label}</p>
+      <p className="type-body-sm text-muted-foreground">{t(`stats.${key}`)}</p>
     </div>
   )
 }

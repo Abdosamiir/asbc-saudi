@@ -2,20 +2,52 @@
 
 import { Fragment, useLayoutEffect, useRef } from "react"
 import gsap from "gsap"
+import { useLocale, useTranslations } from "next-intl"
+import { getLocaleDirection } from "@/shared/i18n/routing"
 
 const ACCENT = "#D9BC83"
 
-const LINES = [
-  { text: "Precision" },
-  { text: "Engineering." },
-  { text: "Built for Arabia's", accent: true },
-  { text: "Future.", accent: true },
-]
+/*
+ * Glyphs fly in from the end of the line and tip over from their start edge.
+ * Arabic is cursive, so splitting a word into separate inline-blocks would
+ * break the joins between its letters: RTL animates whole words instead, at a
+ * slower beat to match.
+ */
+const TYPING_BY_DIRECTION = {
+  ltr: {
+    splitWord: (word: string) => Array.from(word),
+    enterXPercent: 160,
+    enterRotate: 18,
+    transformOrigin: "0% 100%",
+    beat: 0.045,
+  },
+  rtl: {
+    splitWord: (word: string) => [word],
+    enterXPercent: -160,
+    enterRotate: -18,
+    transformOrigin: "100% 100%",
+    beat: 0.14,
+  },
+}
 
 export default function HeroHeadline() {
+  // Translation
+  const t = useTranslations("HomeHero")
+  const locale = useLocale()
+  // Ref
   const headingRef = useRef<HTMLHeadingElement>(null)
   const caretRef = useRef<HTMLSpanElement>(null)
+  // Variables
+  const direction = getLocaleDirection(locale)
+  const typing = TYPING_BY_DIRECTION[direction]
+  const lines = [
+    { text: t("headlineLine1") },
+    { text: t("headlineLine2") },
+    { text: t("headlineLine3"), accent: true },
+    { text: t("headlineLine4"), accent: true },
+  ]
 
+  // Effects
   useLayoutEffect(() => {
     const heading = headingRef.current
     const caret = caretRef.current
@@ -29,10 +61,15 @@ export default function HeroHeadline() {
       const chars = gsap.utils.toArray<HTMLElement>("[data-char]", heading)
       const finalColors = chars.map((el) => getComputedStyle(el).color)
       const caretGap = parseFloat(getComputedStyle(heading).fontSize) * 0.04
+      const isRtl = direction === "rtl"
 
+      // Offsets are physical, so "after" a glyph is its left edge in RTL.
       const placeCaret = (el: HTMLElement, after = true) =>
         gsap.set(caret, {
-          x: el.offsetLeft + (after ? el.offsetWidth + caretGap : -caretGap),
+          x:
+            after !== isRtl
+              ? el.offsetLeft + el.offsetWidth + caretGap
+              : el.offsetLeft - caretGap,
           y: el.offsetTop + el.offsetHeight * 0.12,
           height: el.offsetHeight * 0.76,
         })
@@ -40,12 +77,12 @@ export default function HeroHeadline() {
       chars.forEach((el) => {
         gsap.set(el, {
           opacity: 0,
-          xPercent: 160,
-          rotate: 18,
+          xPercent: typing.enterXPercent,
+          rotate: typing.enterRotate,
           scale: 0.7,
           filter: "blur(10px)",
           color: el.dataset.accent ? "#ffffff" : ACCENT,
-          transformOrigin: "0% 100%",
+          transformOrigin: typing.transformOrigin,
         })
       })
       placeCaret(chars[0], false)
@@ -76,8 +113,8 @@ export default function HeroHeadline() {
         )
 
         // Typewriter rhythm: small pause on punctuation, words and line breaks
-        t += 0.045
-        if (/[.,']/.test(el.textContent ?? "")) t += 0.08
+        t += typing.beat
+        if (/[.,'،]/.test(el.textContent ?? "")) t += 0.08
         if (el.dataset.wordEnd) t += 0.06
         if (el.dataset.lineEnd) t += 0.18
       })
@@ -97,15 +134,15 @@ export default function HeroHeadline() {
     }, heading)
 
     return () => ctx.revert()
-  }, [])
+  }, [direction, typing])
 
   return (
     <h1
       ref={headingRef}
-      aria-label={LINES.map((line) => line.text).join(" ")}
-      className="invisible relative font-heading text-4xl leading-[1.05] font-extrabold tracking-tight text-content sm:text-5xl md:text-6xl xl:text-7xl"
+      aria-label={lines.map((line) => line.text).join(" ")}
+      className="invisible relative font-heading text-4xl leading-[1.05] font-extrabold tracking-tight text-content sm:text-5xl md:text-6xl xl:text-7xl rtl:tracking-normal"
     >
-      {LINES.map((line, li) => {
+      {lines.map((line, li) => {
         const words = line.text.split(" ")
 
         return (
@@ -115,8 +152,8 @@ export default function HeroHeadline() {
                 <Fragment key={wi}>
                   {wi > 0 && " "}
                   <span className="inline-block whitespace-nowrap">
-                    {Array.from(word).map((char, ci) => {
-                      const isWordEnd = ci === word.length - 1
+                    {typing.splitWord(word).map((char, ci, units) => {
+                      const isWordEnd = ci === units.length - 1
                       const isLineEnd = isWordEnd && wi === words.length - 1
 
                       return (
@@ -136,7 +173,7 @@ export default function HeroHeadline() {
                 </Fragment>
               ))}
             </span>
-            {li < LINES.length - 1 && <br />}
+            {li < lines.length - 1 && <br />}
           </Fragment>
         )
       })}

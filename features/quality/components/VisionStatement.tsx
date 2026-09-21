@@ -1,10 +1,15 @@
+import { useTranslations } from "next-intl"
+
 import Reveal from "@/shared/components/Reveal"
 
 import PillarPill from "./PillarPill"
-import { VISION_PILLARS, VISION_STATEMENT } from "../data/quality"
+import { VISION_PILLARS } from "../data/quality"
 
 /** Closing statement: the company vision and the pillars it rests on. */
 export default function VisionStatement() {
+  // Translation
+  const t = useTranslations("QualityVision")
+
   return (
     <section className="bg-surface py-16 md:py-24">
       <div className="container">
@@ -17,8 +22,9 @@ export default function VisionStatement() {
               &ldquo;
             </span>
 
-            <blockquote className="relative text-center font-serif text-[28px] leading-9 font-normal text-brand italic md:text-4xl md:leading-10">
-              {VISION_STATEMENT}
+            {/* Arabic has no true italic; a slanted serif fallback reads poorly. */}
+            <blockquote className="relative text-center font-serif text-[28px] leading-9 font-normal text-brand italic md:text-4xl md:leading-10 rtl:font-sans rtl:not-italic">
+              {t("statement")}
             </blockquote>
           </div>
         </Reveal>
@@ -27,7 +33,7 @@ export default function VisionStatement() {
           <ul className="mt-8 flex flex-wrap items-center justify-center gap-3 md:mt-12">
             {VISION_PILLARS.map((pillar) => (
               <li key={pillar}>
-                <PillarPill label={pillar} />
+                <PillarPill label={t(`pillars.${pillar}`)} />
               </li>
             ))}
           </ul>

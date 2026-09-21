@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useTranslations } from "next-intl"
 import { useTheme } from "next-themes"
 import { Moon, Sun } from "lucide-react"
 import { cn } from "@/shared/lib/utils"
@@ -16,6 +17,7 @@ type ThemeToggleProps = {
 const subscribe = () => () => {}
 
 export default function ThemeToggle({ className }: ThemeToggleProps) {
+  const t = useTranslations("ThemeToggle")
   const { resolvedTheme, setTheme } = useTheme()
   /** `false` on the server and through hydration, `true` once on the client. */
   const mounted = React.useSyncExternalStore(
@@ -32,9 +34,9 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
     <button
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+      aria-label={isDark ? t("switchToLight") : t("switchToDark")}
       aria-pressed={mounted ? isDark : undefined}
-      title="Toggle theme (D)"
+      title={t("hint")}
       className={cn(
         "relative inline-flex size-11 shrink-0 items-center justify-center rounded-full",
         "border border-line text-content-muted",

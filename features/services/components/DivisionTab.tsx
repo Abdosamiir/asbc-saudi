@@ -12,7 +12,7 @@ type DivisionTabProps = {
   tabId: string
 }
 
-/** One selectable division in the left-hand list. */
+/** One selectable division in the start-side list. */
 export default function DivisionTab({
   number,
   title,
@@ -31,7 +31,7 @@ export default function DivisionTab({
       tabIndex={isActive ? 0 : -1}
       onClick={onSelect}
       className={cn(
-        "w-full rounded-lg p-4 text-left transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring motion-reduce:transition-none",
+        "w-full rounded-lg p-4 text-start transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring motion-reduce:transition-none",
         // `surface-brand` re-scopes the tokens inside, so the number and
         // title invert with the fill instead of needing their own overrides.
         isActive ? "surface-brand shadow-e2" : "hover:bg-surface-sunken"
@@ -48,7 +48,7 @@ export default function DivisionTab({
       <span
         aria-hidden
         className={cn(
-          "mt-3 block h-0.5 origin-left rounded-sm bg-accent-gold transition-transform duration-300 motion-reduce:transition-none",
+          "mt-3 block h-0.5 rounded-sm bg-accent-gold transition-transform duration-300 motion-reduce:transition-none ltr:origin-left rtl:origin-right",
           isActive ? "scale-x-100" : "scale-x-0"
         )}
       />

@@ -159,6 +159,10 @@ const StrokeText = ({
     const fillEnabled = fillMode !== "none"
     const useWipe = fillEnabled && fillMode === "wipe"
     const fillDuration = Math.max(0.4, drawDuration * 0.5)
+    // The wipe follows the reading direction: it grows leftward from the right
+    // edge in RTL, by starting at the far end and pulling `x` back with it.
+    const isRtl = getComputedStyle(root).direction === "rtl"
+    const wipeStartX = isRtl ? box.x + box.width : box.x
     const staggerConfig: number | gsap.StaggerVars = reverse
       ? { each: stagger, from: "end" as const }
       : stagger
@@ -168,14 +172,17 @@ const StrokeText = ({
       gsap.killTweensOf(targets)
       gsap.set(strokes, { strokeDasharray: dash, strokeDashoffset: dash })
       gsap.set(fills, { opacity: useWipe ? 1 : 0 })
-      if (wipe) gsap.set(wipe, { attr: { width: 0 } })
+      if (wipe) gsap.set(wipe, { attr: { width: 0, x: wipeStartX } })
     }
 
     const setEnd = () => {
       gsap.killTweensOf(targets)
       gsap.set(strokes, { strokeDasharray: dash, strokeDashoffset: 0 })
       gsap.set(fills, { opacity: fillEnabled ? 1 : 0 })
-      if (wipe) gsap.set(wipe, { attr: { width: fillEnabled ? box.width : 0 } })
+      if (wipe)
+        gsap.set(wipe, {
+          attr: { width: fillEnabled ? box.width : 0, x: box.x },
+        })
     }
 
     const prefersReducedMotion = window.matchMedia?.(
@@ -210,7 +217,7 @@ const StrokeText = ({
         tl.to(
           wipe,
           {
-            attr: { width: box.width },
+            attr: { width: box.width, x: box.x },
             duration: fillDuration,
             ease: "power2.inOut",
           },

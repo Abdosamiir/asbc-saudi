@@ -1,6 +1,7 @@
 "use client"
 
 import { useMemo, useState } from "react"
+import { useTranslations } from "next-intl"
 
 import SectionHeading from "@/features/services/components/SectionHeading"
 
@@ -11,8 +12,12 @@ import { projects } from "./data/project-data"
 import { DEFAULT_PROJECT_FILTER, filterProjects } from "./data/project-filters"
 
 export default function CompletedProjects() {
+  // Translation
+  const t = useTranslations("ProjectsCompleted")
+  // State
   const [activeFilter, setActiveFilter] = useState(DEFAULT_PROJECT_FILTER)
 
+  // Variables
   const visibleProjects = useMemo(
     () => filterProjects(projects, activeFilter),
     [activeFilter]
@@ -25,9 +30,9 @@ export default function CompletedProjects() {
       <div className="container">
         <SectionHeading
           className="max-w-4xl"
-          eyebrow="03 — Projects"
-          title="Completed Projects. Zero Compromises."
-          description="A selection of our completed works across Saudi Arabia"
+          eyebrow={t("eyebrow")}
+          title={t("title")}
+          description={t("description")}
         />
 
         <div className="mt-10 md:mt-12">
@@ -53,7 +58,7 @@ export default function CompletedProjects() {
           </div>
         ) : (
           <p className="mt-8 text-center type-body-md text-muted-foreground">
-            No completed projects in this period yet.
+            {t("empty")}
           </p>
         )}
       </div>

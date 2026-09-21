@@ -1,41 +1,18 @@
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 import BackToTop from "@/shared/components/footer/BackToTop"
+import { Link as LocaleLink } from "@/shared/i18n/navigation"
+import { ROUTES, type RouteKey } from "@/shared/lib/routes"
 
-const quickLinks = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Services",
-    href: "/services",
-  },
-  {
-    label: "Clients",
-    href: "/clients",
-  },
-  {
-    label: "Contact",
-    href: "/contact",
-  },
-]
+const QUICK_LINKS: RouteKey[] = ["home", "services", "clients", "contact"]
 
-const companyLinks = [
-  {
-    label: "About",
-    href: "/about",
-  },
-  {
-    label: "Projects",
-    href: "/projects",
-  },
-  {
-    label: "Quality",
-    href: "/quality",
-  },
-]
+const COMPANY_LINKS: RouteKey[] = ["about", "projects", "quality"]
 
 export default function Footer() {
+  // Translation
+  const t = useTranslations("Footer")
+  const tNavigation = useTranslations("Navigation")
+
   return (
     <footer className="surface-ink">
       <div className="container py-12 md:py-16">
@@ -43,45 +20,46 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-16">
           {/* Company */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="font-heading text-2xl font-bold">
-              ASBC
-            </Link>
+            <LocaleLink
+              href={ROUTES.home}
+              className="font-heading text-2xl font-bold"
+            >
+              {t("brand")}
+            </LocaleLink>
 
             <p className="mt-4 max-w-sm type-body-sm leading-6 text-content-muted">
-              Industrial-grade welding, water systems, electromechanical
-              commissioning, and structural fabrication for Saudi Arabia&apos;s
-              most critical infrastructure.
+              {t("tagline")}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="type-heading-xs text-heading">Quick Links</h3>
+            <h3 className="type-heading-xs text-heading">{t("quickLinks")}</h3>
 
             <div className="mt-5 grid grid-cols-2 gap-x-8">
               {/* First Column */}
               <div className="flex flex-col gap-4">
-                {quickLinks.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
+                {QUICK_LINKS.map((link) => (
+                  <LocaleLink
+                    key={link}
+                    href={ROUTES[link]}
                     className="w-fit type-body-sm text-content-muted transition-colors duration-200 hover:text-content"
                   >
-                    {link.label}
-                  </Link>
+                    {tNavigation(link)}
+                  </LocaleLink>
                 ))}
               </div>
 
               {/* Second Column */}
               <div className="flex flex-col gap-4">
-                {companyLinks.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
+                {COMPANY_LINKS.map((link) => (
+                  <LocaleLink
+                    key={link}
+                    href={ROUTES[link]}
                     className="w-fit type-body-sm text-content-muted transition-colors duration-200 hover:text-content"
                   >
-                    {link.label}
-                  </Link>
+                    {tNavigation(link)}
+                  </LocaleLink>
                 ))}
               </div>
             </div>
@@ -89,17 +67,19 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="type-heading-xs text-heading">Contact</h3>
+            <h3 className="type-heading-xs text-heading">{t("contact")}</h3>
 
             <div className="mt-5 flex flex-col gap-3 type-body-sm leading-6 text-content-muted">
               <p>
-                PO Box 27559, Riyadh 11314
+                {t("addressLine")}
                 <br />
-                Saudi Arabia
+                {t("country")}
               </p>
 
+              {/* Phone numbers and emails read left-to-right, even in Arabic. */}
               <Link
                 href="tel:+966541120717"
+                dir="ltr"
                 className="w-fit transition-colors duration-200 hover:text-content"
               >
                 +966 541120717
@@ -107,15 +87,16 @@ export default function Footer() {
 
               <Link
                 href="mailto:Sales@asbc-sa.net"
+                dir="ltr"
                 className="w-fit transition-colors duration-200 hover:text-content"
               >
                 Sales@asbc-sa.net
               </Link>
 
               <p>
-                Sunday – Thursday
+                {t("workingDays")}
                 <br />
-                08:00 – 17:00 AST
+                {t("workingHours")}
               </p>
             </div>
           </div>
@@ -131,15 +112,15 @@ export default function Footer() {
             <BackToTop />
 
             <span className="type-body-xs text-content-subtle">
-              © 2026 ASBC. All rights reserved.
+              {t("copyright")}
             </span>
           </div>
 
           {/* Company Numbers */}
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 type-body-xs text-content-subtle">
-            <span>CR: 1010999342</span>
-            <span>Chamber: 351949</span>
-            <span>VAT: 310078962900003</span>
+            <span>{t("commercialRegistration")}</span>
+            <span>{t("chamber")}</span>
+            <span>{t("vat")}</span>
           </div>
         </div>
       </div>

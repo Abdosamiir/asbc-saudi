@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl"
 import Particles from "@/shared/components/Particles"
 import { Button } from "@/shared/components/ui/button"
 
@@ -8,6 +9,9 @@ import CountUpCards from "@/features/home/components/countupcard"
 import EdgeSection from "@/features/home/components/EdgeSection"
 
 export default function HomePage() {
+  // Translation
+  const t = useTranslations("HomeHero")
+
   return (
     <>
       <section className="relative overflow-hidden surface-inverse">
@@ -33,7 +37,7 @@ export default function HomePage() {
           <div className="max-w-2xl min-w-0 lg:order-first">
             {/* Small Text */}
             <p className="mb-6 type-eyebrow-sm text-content-muted sm:type-eyebrow-md">
-              Est. 2016 · Riyadh, Saudi Arabia · CR: 1010999342
+              {t("eyebrow")}
             </p>
 
             {/* Heading */}
@@ -41,18 +45,15 @@ export default function HomePage() {
 
             {/* Description */}
             <p className="mt-8 max-w-xl type-body-md text-content-muted">
-              Arabian Solutions Beacon Est. delivers industrial-grade welding,
-              water systems, electromechanical commissioning, and structural
-              fabrication — trusted by NWC, NOMAC, Saudi Electricity, and the
-              Royal Commission across 35+ completed projects.
+              {t("description")}
             </p>
 
             {/* Buttons */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <Button size="lg">Explore Our Work</Button>
+              <Button size="lg">{t("exploreWork")}</Button>
 
               <Button variant="outline-on-navy" size="lg">
-                Download Profile
+                {t("downloadProfile")}
               </Button>
             </div>
 
@@ -62,21 +63,21 @@ export default function HomePage() {
                 <strong className="block type-heading-md text-content">
                   35+
                 </strong>
-                Projects
+                {t("statProjects")}
               </span>
 
               <span>
                 <strong className="block type-heading-md text-content">
                   7+
                 </strong>
-                Years
+                {t("statYears")}
               </span>
 
               <span>
                 <strong className="block type-heading-md text-content">
                   20+
                 </strong>
-                Industries
+                {t("statIndustries")}
               </span>
             </div>
           </div>

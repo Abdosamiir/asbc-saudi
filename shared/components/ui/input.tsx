@@ -50,6 +50,7 @@ function Input({
   variant,
   inputSize,
   "aria-describedby": describedBy,
+  dir,
   ...props
 }: InputProps) {
   const generatedId = React.useId()
@@ -80,7 +81,9 @@ function Input({
           )}
         </label>
       )}
-      <div className="relative">
+      {/* `dir` sits on the control's own wrapper so the end-side status icon
+          and the end padding reserved for it stay on the same side. */}
+      <div className="relative" dir={dir}>
         <InputPrimitive
           {...props}
           id={inputId}

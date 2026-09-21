@@ -1,0 +1,578 @@
+{
+  "LocaleSwitcher": {
+    "targetLanguage": "العربية"
+  },
+  "Header": {
+    "homeLabel": "ASBC home",
+    "logoAlt": "ASBC",
+    "brand": "ASBC",
+    "getInTouch": "Get In Touch",
+    "openMenu": "Open navigation menu",
+    "menuDescription": "Navigate the ASBC website.",
+    "closeMenu": "Close"
+  },
+  "Navigation": {
+    "mainLabel": "Main navigation",
+    "mobileLabel": "Mobile navigation",
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "clients": "Clients",
+    "quality": "Quality",
+    "contact": "Contact"
+  },
+  "ThemeToggle": {
+    "switchToLight": "Switch to light theme",
+    "switchToDark": "Switch to dark theme",
+    "hint": "Toggle theme (D)"
+  },
+  "Footer": {
+    "brand": "ASBC",
+    "tagline": "Industrial-grade welding, water systems, electromechanical commissioning, and structural fabrication for Saudi Arabia's most critical infrastructure.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "addressLine": "PO Box 27559, Riyadh 11314",
+    "country": "Saudi Arabia",
+    "workingDays": "Sunday – Thursday",
+    "workingHours": "08:00 – 17:00 AST",
+    "backToTop": "Back to top",
+    "copyright": "© 2026 ASBC. All rights reserved.",
+    "commercialRegistration": "CR: 1010999342",
+    "chamber": "Chamber: 351949",
+    "vat": "VAT: 310078962900003"
+  },
+  "PageHero": {
+    "about": {
+      "eyebrow": "ABOUT US",
+      "title": "About Us"
+    },
+    "services": {
+      "eyebrow": "OUR SERVICES",
+      "title": "Our Services"
+    },
+    "projects": {
+      "eyebrow": "OUR PROJECTS",
+      "title": "Our Projects"
+    },
+    "quality": {
+      "eyebrow": "EXCELLENCE",
+      "title": "Quality & Certifications",
+      "description": "Built on a foundation of rigorous standards and continuous improvement"
+    },
+    "clients": {
+      "eyebrow": "OUR NETWORK",
+      "title": "Our Clients",
+      "description": "Trusted by Saudi Arabia's leading organizations across critical industries"
+    },
+    "contact": {
+      "eyebrow": "GET IN TOUCH",
+      "title": "Contact Us"
+    }
+  },
+  "Units": {
+    "plus": "+",
+    "metres": "m"
+  },
+  "HomeHero": {
+    "eyebrow": "Est. 2016 · Riyadh, Saudi Arabia · CR: 1010999342",
+    "headlineLine1": "Precision",
+    "headlineLine2": "Engineering.",
+    "headlineLine3": "Built for Arabia's",
+    "headlineLine4": "Future.",
+    "description": "Arabian Solutions Beacon Est. delivers industrial-grade welding, water systems, electromechanical commissioning, and structural fabrication — trusted by NWC, NOMAC, Saudi Electricity, and the Royal Commission across 35+ completed projects.",
+    "exploreWork": "Explore Our Work",
+    "downloadProfile": "Download Profile",
+    "statProjects": "Projects",
+    "statYears": "Years",
+    "statIndustries": "Industries"
+  },
+  "HomeClients": {
+    "ariaLabel": "Our clients",
+    "title": "TRUSTED BY SAUDI ARABIA'S LEADING ORGANIZATIONS",
+    "companies": {
+      "nwc": "NWC",
+      "nomac": "NOMAC",
+      "saudiElectricity": "Saudi Electricity",
+      "royalCommissionAlUla": "Royal Commission AlUla",
+      "kafd": "KAFD",
+      "maaden": "Maaden",
+      "civilWorks": "Civil Works Company",
+      "posco": "POSCO E&C",
+      "nwwc": "NWWC",
+      "toledoArabia": "Toledo Arabia"
+    }
+  },
+  "HomeTrackRecord": {
+    "eyebrow": "OUR TRACK RECORD",
+    "title": "Numbers That Speak",
+    "stats": {
+      "completedProjects": "Completed projects",
+      "yearEstablished": "Year established",
+      "industriesServed": "Industries served",
+      "deepestPumpInstallation": "Deepest pump installation",
+      "serviceDivisions": "Service divisions"
+    }
+  },
+  "HomeEdge": {
+    "eyebrow": "OUR EDGE",
+    "title": "What Makes ASBC Different",
+    "items": {
+      "certifiedWelding": {
+        "title": "API 1104 Certified Welding",
+        "description": "Our welders operate under API 1104 & ASME IX. Radiography and dye penetrant testing on all structural welds. Zero-defect philosophy."
+      },
+      "deepWell": {
+        "title": "Deep-Well Specialists to 460m",
+        "description": "From 10HP domestic submersibles to 450HP/4160V high-voltage units at 460 metres — we've installed and commissioned them all."
+      },
+      "trustedInstitutions": {
+        "title": "Trusted by Saudi Arabia's Top Institutions",
+        "description": "NWC, Saudi Electricity, NOMAC, Royal Commission for AlUla, Maaden, KAFD — our client list is our credential."
+      }
+    }
+  },
+  "AboutIntro": {
+    "eyebrow": "01 - ABOUT",
+    "title": "Built on Precision. Grown on Trust.",
+    "body": "Arabian Solutions Beacon Est. was founded in Riyadh with a singular commitment: deliver world-class industrial contracting services through two specialized divisions — a precision welding and machining workshop, and a field operations arm covering pumping systems, electromechanical installations, and structural fabrication. Our specialized technical team operates with military-grade precision across Saudi Arabia’s most demanding infrastructure environments — from deep-well pump installations at 460m depth to curtain wall systems at Lulu Hypermarket Riyadh.",
+    "quote": "“Aspire to be the pioneer in providing best-in-class welding services and a recognized contributor to the Kingdom's growth.”",
+    "stats": {
+      "completedProjects": "COMPLETED PROJECTS",
+      "yearEstablished": "YEAR ESTABLISHED",
+      "industriesServed": "INDUSTRIES SERVED",
+      "deepestPumpInstallation": "DEEPEST PUMP<br></br>INSTALLATION",
+      "serviceDivisions": "SERVICE DIVISIONS"
+    }
+  },
+  "AboutPrinciples": {
+    "eyebrow": "OUR FOUNDATION",
+    "title": "Six Principles That Drive Everything",
+    "items": {
+      "integrity": {
+        "title": "Integrity",
+        "description": "Making choices informed by honest intentions, and that leads to correct actions."
+      },
+      "respect": {
+        "title": "Respect",
+        "description": "Promoting a culture of decency and concern for those around us by setting the expectation for all our staff that they treat others with utmost care and compassion."
+      },
+      "customerCentric": {
+        "title": "Customer Centric",
+        "description": "Putting our customers first, by demonstrating our understanding of their service needs and priorities."
+      },
+      "responsibility": {
+        "title": "Responsibility",
+        "description": "Taking pride in delivering consistently great service to our customers and stakeholders, driven by a firm dedication and commitment to their interests."
+      },
+      "sustainability": {
+        "title": "Sustainability",
+        "description": "Growing our business with the support of lasting partnerships, great customer service, and a concern for the environment."
+      },
+      "accountability": {
+        "title": "Accountability",
+        "description": "Creating a culture of transparency and a foundation on top of which all our actions and decisions are justified."
+      }
+    }
+  },
+  "AboutMission": {
+    "eyebrow": "OUR MISSION",
+    "intro": "Our purpose is to deliver customer centric services covering the entire value chain to serve the core businesses of multi-industries through:",
+    "items": {
+      "caringApproach": {
+        "title": "Caring Approach",
+        "description": "Promoting our caring and humane approach by delivering best of class services."
+      },
+      "competitiveServices": {
+        "title": "Competitive Services",
+        "description": "Delivering competitive services that meet multi-industries requirements."
+      },
+      "stakeholderPartnerships": {
+        "title": "Stakeholder Partnerships",
+        "description": "Partnering with our stakeholders for mutual growth and success."
+      },
+      "qualitySafety": {
+        "title": "Quality & Safety",
+        "description": "Operating at the highest levels of quality, safety and environmental standards."
+      }
+    }
+  },
+  "ServiceDivisions": {
+    "eyebrow": "02 — Services",
+    "title": "Six Specialized Divisions",
+    "description": "From the workshop floor to a Saudi Aramco pipeline — ASBC operates across the full industrial value chain.",
+    "tablistLabel": "ASBC service divisions",
+    "capabilitiesHeading": "Capabilities",
+    "envelopeNote": "<label>Building Envelope:</label> Glass walls, curtain wall, facades, handrails, skylights, aluminum composite panels — design & installation (ASBC also operates in building envelope work with authorized fabricator credentials from TECHNAL/France, VISTAWALL/USA, ALUCOBOND/Germany)",
+    "divisions": {
+      "welding": {
+        "title": "Welding, Machining & Assembly",
+        "description": "Precision welding and machining executed under API 1104 and ASME IX, from small tolerance parts to large structural assemblies."
+      },
+      "maintenance": {
+        "title": "Maintenance & Overhauling",
+        "description": "Planned and corrective maintenance programmes that keep rotating equipment, pumps and electromechanical assets available and in tolerance."
+      },
+      "installation": {
+        "title": "Installation, Testing & Commissioning",
+        "description": "Full installation scope through to witnessed testing and handover, covering mechanical, piping and electromechanical systems."
+      },
+      "pumping": {
+        "title": "Water & Sewage Pumping Systems",
+        "description": "Deep-well, booster and sewage pumping systems installed and commissioned to depths of 460 metres for utility and municipal clients."
+      },
+      "workshop": {
+        "title": "Workshop & Machining Services",
+        "description": "A fully equipped Riyadh workshop for precision machining, fabrication and material testing on parts and assemblies of every size."
+      },
+      "supply": {
+        "title": "Supply & Trading",
+        "description": "Authorized supply chain for pumps, valves, piping, flow meters, and electromechanical components sourced from Europe, Taiwan, and Germany."
+      }
+    }
+  },
+  "DivisionCapabilities": {
+    "gtawGmawSmaw": "GTAW, GMAW and SMAW welding on carbon and stainless steel",
+    "precisionMachining": "CNC and manual machining of precision components",
+    "structuralFabrication": "Structural steel fabrication and assembly",
+    "weldTesting": "Radiography and dye penetrant testing on structural welds",
+    "pipeSpooling": "Pipe spooling, cutting, bevelling and fit-up",
+    "pressureVessels": "Pressure vessel and tank manufacturing",
+    "weldQualification": "Weld procedure and welder qualification support",
+    "repairWelding": "On-site and in-workshop repair welding",
+    "maintenancePrograms": "Preventive and corrective maintenance programmes",
+    "pumpOverhauling": "Pump overhauling, rebuilding and performance restoration",
+    "alignmentBalancing": "Rotating equipment alignment and balancing",
+    "valveServicing": "Valve servicing, reseating and actuator overhaul",
+    "gearboxCoupling": "Gearbox and coupling inspection and replacement",
+    "bearingsSeals": "Bearing and mechanical seal replacement",
+    "shutdownSupport": "Shutdown and turnaround support",
+    "spareParts": "Spare parts sourcing and refurbishment",
+    "equipmentInstallation": "Mechanical and electromechanical equipment installation",
+    "pipingErection": "Piping erection, supports and alignment",
+    "pressureTesting": "Hydrostatic and pneumatic pressure testing",
+    "controlPanels": "Control panel installation and loop checking",
+    "functionalTesting": "Functional testing and performance verification",
+    "commissioning": "Pre-commissioning, commissioning and start-up",
+    "asBuiltDocumentation": "As-built documentation and handover dossiers",
+    "operatorTraining": "Operator training and post-handover support",
+    "deepWellInstallation": "Deep-well submersible pump installation to 460 m",
+    "pumpRange": "10 HP domestic to 450 HP / 4160 V high-voltage units",
+    "pumpTypes": "End-suction, split case and in-line vertical pumps",
+    "liftStations": "Sewage and wastewater lift station installation",
+    "boosterSets": "Booster sets, headers and manifold fabrication",
+    "wellheadAssembly": "Column pipe, cable and wellhead assembly",
+    "instrumentation": "Flow, pressure and water level instrumentation",
+    "pumpTesting": "Pump performance testing and commissioning",
+    "cncCentres": "CNC machining centres for precision components",
+    "latheMachining": "Lathe machining across various capacities",
+    "pipeFabrication": "Pipe fabrication and spool production",
+    "tankManufacturing": "Tank manufacturing in stainless and carbon steel",
+    "materialTesting": "Material testing and dimensional inspection",
+    "qualityInspection": "Quality inspection tooling and reporting",
+    "reverseEngineering": "Reverse engineering of obsolete parts",
+    "surfaceFinishing": "Surface preparation, coating and finishing",
+    "pipesFittings": "Pipes and fittings with a cooperation with a specialist European and Taiwan manufactures",
+    "pumps": "Pumps: deep well, end-suction, high-pressure, axial split case, and in-line vertical pumps",
+    "valves": "Valves DN15–DN3000 with electrical and pneumatic actuators",
+    "pinchValves": "Pinch valves with a cooperation with a specialist Germany manufacture",
+    "flowMeters": "Flow meters with a cooperation with a specialist European manufactures",
+    "actuators": "Pneumatic, Electrical actuators",
+    "pressureDevices": "Pressure regulating valve, Pressure switch, Pressure transmitter",
+    "levelSensors": "Water level sensors",
+    "controlPanelsAccessories": "Control panels and accessories for electro-mechanic's projects"
+  },
+  "ServiceFacilities": {
+    "eyebrow": "Equipment & Machines",
+    "title": "State-of-the-Art Facilities",
+    "description": "Our workshop is equipped with modern CNC machines, lathe equipment, and specialized welding stations capable of handling projects from small precision parts to large industrial fabrications.",
+    "equipment": {
+      "cncCenters": "CNC Machining Centers",
+      "lathes": "Lathe Machines (Various Capacities)",
+      "weldingStations": "GTAW/GMAW Welding Stations",
+      "pipeFabrication": "Pipe Fabrication Equipment",
+      "materialTesting": "Material Testing Equipment",
+      "qualityInspection": "Quality Inspection Tools"
+    },
+    "capabilitiesTitle": "Workshop Capabilities",
+    "capabilities": {
+      "pipeFabrication": {
+        "label": "Pipe Fabrication",
+        "value": "All Sizes"
+      },
+      "tankManufacturing": {
+        "label": "Tank Manufacturing",
+        "value": "SS & Carbon Steel"
+      },
+      "weldingProcesses": {
+        "label": "Welding Processes",
+        "value": "GTAW, GMAW, SMAW"
+      },
+      "machining": {
+        "label": "Machining",
+        "value": "CNC & Manual"
+      },
+      "assembly": {
+        "label": "Assembly",
+        "value": "Complete Systems"
+      }
+    }
+  },
+  "ProjectsFeatured": {
+    "eyebrow": "FEATURED PROJECTS",
+    "title": "Landmark Installation",
+    "items": {
+      "maadenDeepWell": {
+        "title": "Maaden Phosphate Deep Well",
+        "description": "Installation of 2x deep well pump unit 450HP at 460m depth — one of the deepest well installations in the region."
+      },
+      "nwcTgcStation": {
+        "title": "NWC TGC Water Station",
+        "description": "Complete water installation and pipeline fabrication for Riyadh's major water transmission station."
+      },
+      "alulaFirefighting": {
+        "title": "Royal Commission AlUla",
+        "description": "Firefighting system installation for one of Saudi Arabia's most prestigious heritage sites."
+      }
+    },
+    "tags": {
+      "hp450Motors": "450HP Motors",
+      "depth460m": "460m Deep",
+      "deepwellPumps": "Deepwell Pumps",
+      "waterSupply24": "24\" Water Supply",
+      "pipelineFabrication": "Pipeline Fabrication",
+      "testingCommissioning": "Testing & Commissioning",
+      "site1000m2": "1000m2 Site",
+      "msp": "MSP",
+      "designElectricalJoinery": "Design + Elect. + Joinery"
+    }
+  },
+  "ProjectsCompleted": {
+    "eyebrow": "03 — Projects",
+    "title": "Completed Projects. Zero Compromises.",
+    "description": "A selection of our completed works across Saudi Arabia",
+    "filterAll": "All",
+    "empty": "No completed projects in this period yet.",
+    "featuredBadge": "Featured",
+    "countSummary": "<num>{shown}</num> of <num>{total}</num> shown",
+    "featuredCount": "{count} featured",
+    "items": {
+      "alulaFirefighting": {
+        "category": "ROYAL COMMISSION",
+        "title": "Firefighting pump set 1000 US GPM @145 PSI",
+        "description": "Diesel + electric + jockey pumps",
+        "location": "Royal Commission for AlUla"
+      },
+      "tatweerPrequalification": {
+        "category": "PRE-QUALIFICATION",
+        "title": "Prequalified: Tatweer Industrial City Project",
+        "description": "Toledo Arabia — status B, conditionally approved",
+        "location": "Toledo Arabia"
+      }
+    }
+  },
+  "ProjectStats": {
+    "ariaLabel": "Project track record in numbers",
+    "stats": {
+      "completedProjects": "Completed Projects",
+      "clientsServed": "Clients Served",
+      "deepestInstallation": "Deepest Installation",
+      "yearsExperience": "Years Experience"
+    }
+  },
+  "ClientSectors": {
+    "eyebrow": "Sectors",
+    "title": "Trusted Across Saudi Arabia's Critical Sectors.",
+    "description": "ASBC provides services to water & waste water plants, heavy industries, petrochemical facilities, steel, cement, and national infrastructure projects across the Kingdom of Saudi Arabia.",
+    "sectors": {
+      "waterWastewater": "Water & Wastewater",
+      "heavyIndustry": "Heavy Industry",
+      "petrochemical": "Petrochemical",
+      "infrastructure": "Infrastructure",
+      "steelCement": "Steel & Cement",
+      "defenceSecurity": "Defence & Security"
+    }
+  },
+  "StrategicClients": {
+    "eyebrow": "Key Partners",
+    "title": "Strategic Client Relationships",
+    "items": {
+      "nwc": {
+        "name": "National Water Company (NWC)",
+        "description": "Major water utility serving millions across Saudi Arabia",
+        "engagement": "Multiple Projects Since 2017"
+      },
+      "saudiElectricity": {
+        "name": "Saudi Electricity Company",
+        "description": "Kingdom's primary power generation and distribution",
+        "engagement": "Deep Well Installations"
+      },
+      "royalCommissionAlUla": {
+        "name": "Royal Commission for AlUla",
+        "description": "Heritage preservation and development authority",
+        "engagement": "Firefighting Systems 2022"
+      },
+      "nomac": {
+        "name": "NOMAC",
+        "description": "Leading operations and maintenance company",
+        "engagement": "Compressor Water Wash Units"
+      },
+      "maaden": {
+        "name": "Maaden Phosphate",
+        "description": "Major mining and industrial company",
+        "engagement": "Deep Well Pumps at 460m"
+      },
+      "posco": {
+        "name": "POSCO E&C Saudi Arabia",
+        "description": "International engineering and construction",
+        "engagement": "Infrastructure Projects"
+      }
+    }
+  },
+  "ClientOrganizations": {
+    "eyebrow": "04 — Clients",
+    "title": "The Organizations That Trust ASBC",
+    "allClientsTitle": "All Clients & Partners",
+    "categories": {
+      "waterAuthorities": "Water Authorities",
+      "energyPower": "Energy & Power",
+      "industrial": "Industrial",
+      "government": "Government"
+    }
+  },
+  "ClientNames": {
+    "nwc": "National Water Company (NWC)",
+    "nwwc": "National Water Works Company (NWWC)",
+    "tawzea": "TAWZEA (International Water Distribution Co.)",
+    "nomac": "NOMAC",
+    "saudiElectricity": "Saudi Electricity Company",
+    "royalCommissionAlUla": "Royal Commission for AlUla",
+    "kafd": "King Abdullah Financial District (KAFD)",
+    "maadenPhosphate": "Maaden Phosphate",
+    "posco": "POSCO E&C Saudi Arabia LLC",
+    "civilWorks": "Civil Works Company (CWC)",
+    "sejong": "SEJONG Saudi Arabia LLC",
+    "toledoArabia": "Toledo Arabia",
+    "stateSecurity": "Presidency of State Security",
+    "mewa": "Ministry of Environment, Water & Agriculture",
+    "majmahUniversity": "Majmah University",
+    "azmeel": "Azmeel Contracting Co.",
+    "saudiSdnWater": "Saudi Sdn. Water & Energy Co.",
+    "ibnOmairah": "Ibn Omairah Contracting Co.",
+    "advancedBuildingCare": "Advanced Building Care Est.",
+    "hailCement": "Hail Cement Factory",
+    "najranCement": "Najran Cement Factory",
+    "alWatnCable": "Al Watn Cable Factory",
+    "gulfCable": "Gulf Cable Factory"
+  },
+  "ContactIntro": {
+    "eyebrow": "05 — Contact",
+    "title": "Let's Build Something That Lasts.",
+    "description": "Reach our Riyadh team for project inquiries, technical assessments, or partnership discussions. We respond within 24 hours during business days."
+  },
+  "ContactDetails": {
+    "locationLabel": "Location",
+    "locationValue": "P.O Box 275591, Riyadh 11314",
+    "locationNote": "Saudi Arabia",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "businessHoursLabel": "Business Hours",
+    "businessHoursValue": "Sunday – Thursday",
+    "businessHoursNote": "08:00 – 17:00 AST"
+  },
+  "InquiryForm": {
+    "title": "Send an Inquiry",
+    "fullNameLabel": "Full Name",
+    "fullNamePlaceholder": "Your full name",
+    "fullNameRequired": "Full name is required.",
+    "companyNameLabel": "Company Name",
+    "companyNamePlaceholder": "Your company name",
+    "companyNameRequired": "Company name is required.",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "your.email@company.com",
+    "emailRequired": "Email address is required.",
+    "emailInvalid": "Enter a valid email address.",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "+966 5XX XXX XXXX",
+    "optional": "(Optional)",
+    "serviceLabel": "Service Interest",
+    "servicePlaceholder": "Select a service...",
+    "messageLabel": "Project Brief / Message",
+    "messagePlaceholder": "Tell us about your project requirements... (minimum {min} characters)",
+    "messageRequired": "A short project brief is required.",
+    "messageTooShort": "Please use at least {min} characters.",
+    "messageHint": "{count}/{min} characters minimum",
+    "submit": "Send Inquiry →",
+    "success": "Thank you — we will be in touch within 24 hours.",
+    "services": {
+      "weldingFabrication": "Welding & Fabrication",
+      "waterWastewater": "Water & Wastewater Systems",
+      "electromechanical": "Electromechanical Works",
+      "structuralSteel": "Structural Steel",
+      "pipeline": "Pipeline Services",
+      "maintenanceOperations": "Maintenance & Operations",
+      "other": "Other"
+    }
+  },
+  "QualityCredentials": {
+    "api1104": "API 1104",
+    "asmeIx": "ASME IX",
+    "gtawCertified": "GTAW Certified",
+    "vatRegistered": "VAT Registered",
+    "chamberOfCommerce": "Chamber of Commerce"
+  },
+  "QualityStandards": {
+    "eyebrow": "Standards",
+    "title": "Quality is Not an Option. It's Our Architecture.",
+    "certificationsTitle": "Certifications",
+    "qualityManagementTitle": "Quality Management",
+    "keyCertificationsTitle": "Key Certifications (Earned)",
+    "qualityManagementSummary": "ASBC's welding quality management system covers pre-weld, in-process, and post-weld inspection — including WPS/PQR approval, Welders Performance Tests, DP Testing (100% root + final), Radiographic Examination (10% weld joints), Pickling & Passivation, and Final Dimensional Inspection. Materials tested to ASME IX / ASTM A312 / A182 standards.",
+    "registrations": {
+      "commercialRegistration": "Commercial Registration: 1010999342",
+      "riyadhChamber": "Riyadh Chamber Membership: No. 351949",
+      "vat": "VAT Registration: 310078962900003",
+      "monshaat": "Monsha'at (SME Authority) Certified — Dec 2022",
+      "gosi": "GOSI (Social Insurance) Registered",
+      "nitaqat": "Nitaqat Saudization: Active"
+    },
+    "keyCertifications": {
+      "rtPtCertified": "RT & PT Certified (API 1104 Standard) — Gulf Engineering House / 2017",
+      "pqr": "Welding Procedure Qualification Record (PQR) — AL HOTY-STANGER / 2016",
+      "nwcApproval": "ASBC Approved as manufacturer/subcontractor — NWC / DIYAR / 2016–2023",
+      "toledoPrequalification": "Prequalification Status B — Toledo Arabia / Tatweer Industrial City / 2023"
+    }
+  },
+  "QualityProcess": {
+    "eyebrow": "Quality Assurance",
+    "title": "Our QA Process",
+    "description": "A systematic approach to quality assurance at every stage of the welding process",
+    "steps": {
+      "preWeld": {
+        "title": "Pre-Weld Inspection",
+        "description": "Material verification, WPS review, welder qualification checks, joint preparation inspection"
+      },
+      "inProcess": {
+        "title": "In-Process Monitoring",
+        "description": "Real-time welding parameter monitoring, interpass temperature control, visual inspection"
+      },
+      "postWeld": {
+        "title": "Post-Weld Testing",
+        "description": "DP testing (100% root + final), radiographic examination (10% joints), dimensional inspection"
+      },
+      "finalDocumentation": {
+        "title": "Final Documentation",
+        "description": "Complete traceability records, test certificates, as-built documentation package"
+      }
+    }
+  },
+  "QualityVision": {
+    "statement": "Aspire to be the pioneer in providing best-in-class welding services and recognized as a contributor to the Kingdom's growth.",
+    "pillars": {
+      "customerCentric": "Customer-Centric Value Chain",
+      "multiIndustry": "Multi-Industry Competitiveness",
+      "stakeholderPartnerships": "Stakeholder Partnerships",
+      "qualitySafetyEnvironment": "Quality, Safety & Environment"
+    }
+  }
+}

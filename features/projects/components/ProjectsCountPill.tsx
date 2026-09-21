@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl"
+
 import { Badge } from "@/shared/components/ui/badge"
 
 type ProjectsCountPillProps = {
@@ -12,14 +14,24 @@ export function ProjectsCountPill({
   total,
   featured,
 }: ProjectsCountPillProps) {
+  // Translation
+  const t = useTranslations("ProjectsCompleted")
+
   return (
     <Badge className="h-auto min-h-8 max-w-full flex-wrap gap-x-2 gap-y-1 border-transparent bg-surface-sunken px-3 py-1.5 whitespace-normal">
-      <span className="type-data-md text-brand">{shown}</span>
-      <span className="type-body-sm text-muted-foreground">of</span>
-      <span className="type-data-md text-brand">{total}</span>
-      <span className="type-body-sm text-muted-foreground">shown</span>
+      <span className="type-body-sm text-muted-foreground">
+        {t.rich("countSummary", {
+          shown,
+          total,
+          num: (chunks) => (
+            <span className="type-data-md text-brand">{chunks}</span>
+          ),
+        })}
+      </span>
       <span className="type-body-sm text-gold">·</span>
-      <span className="type-body-sm text-gold">{featured} featured</span>
+      <span className="type-body-sm text-gold">
+        {t("featuredCount", { count: featured })}
+      </span>
     </Badge>
   )
 }

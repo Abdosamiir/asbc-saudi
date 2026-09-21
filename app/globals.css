@@ -97,9 +97,9 @@
    theme class or a surface scope can rewrite them at runtime.
    ------------------------------------------------------------------------ */
 @theme inline {
-  --font-sans: var(--font-dm-sans), sans-serif;
-  --font-heading: var(--font-sora), sans-serif;
-  --font-mono: var(--font-jetbrains-mono), monospace;
+  --font-sans: var(--font-dm-sans), var(--font-plex-arabic), sans-serif;
+  --font-heading: var(--font-sora), var(--font-plex-arabic), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), var(--font-plex-arabic), monospace;
 
   /* Surfaces — an elevation ladder, dimmest to brightest */
   --color-surface-sunken: var(--surface-sunken);
@@ -510,7 +510,7 @@
     @apply bg-background text-foreground;
   }
   :where(h1, h2, h3, h4, h5, h6) {
-    font-family: var(--font-sora), sans-serif;
+    font-family: var(--font-sora), var(--font-plex-arabic), sans-serif;
     font-weight: 700;
     color: var(--heading);
   }
@@ -619,7 +619,7 @@
 }
 
 @utility type-display-xl {
-  font-family: var(--font-sora), sans-serif;
+  font-family: var(--font-sora), var(--font-plex-arabic), sans-serif;
   font-size: 3.75rem;
   line-height: 3.75rem;
   font-weight: 800;
@@ -627,7 +627,7 @@
 }
 
 @utility type-display-lg {
-  font-family: var(--font-sora), sans-serif;
+  font-family: var(--font-sora), var(--font-plex-arabic), sans-serif;
   font-size: 3rem;
   line-height: 3rem;
   font-weight: 800;
@@ -635,7 +635,7 @@
 }
 
 @utility type-display-md {
-  font-family: var(--font-sora), sans-serif;
+  font-family: var(--font-sora), var(--font-plex-arabic), sans-serif;
   font-size: 2.25rem;
   line-height: 2.5rem;
   font-weight: 800;
@@ -643,7 +643,7 @@
 }
 
 @utility type-heading-xl {
-  font-family: var(--font-sora), sans-serif;
+  font-family: var(--font-sora), var(--font-plex-arabic), sans-serif;
   font-size: 2rem;
   line-height: 2.5rem;
   font-weight: 700;
@@ -651,7 +651,7 @@
 }
 
 @utility type-heading-lg {
-  font-family: var(--font-sora), sans-serif;
+  font-family: var(--font-sora), var(--font-plex-arabic), sans-serif;
   font-size: 1.5rem;
   line-height: 2rem;
   font-weight: 700;
@@ -659,7 +659,7 @@
 }
 
 @utility type-heading-md {
-  font-family: var(--font-sora), sans-serif;
+  font-family: var(--font-sora), var(--font-plex-arabic), sans-serif;
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 700;
@@ -667,7 +667,7 @@
 }
 
 @utility type-heading-sm {
-  font-family: var(--font-sora), sans-serif;
+  font-family: var(--font-sora), var(--font-plex-arabic), sans-serif;
   font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 700;
@@ -675,7 +675,7 @@
 }
 
 @utility type-heading-xs {
-  font-family: var(--font-sora), sans-serif;
+  font-family: var(--font-sora), var(--font-plex-arabic), sans-serif;
   font-size: 1rem;
   line-height: 1.5rem;
   font-weight: 700;
@@ -683,7 +683,7 @@
 }
 
 @utility type-body-lg {
-  font-family: var(--font-dm-sans), sans-serif;
+  font-family: var(--font-dm-sans), var(--font-plex-arabic), sans-serif;
   font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 400;
@@ -691,7 +691,7 @@
 }
 
 @utility type-body-md {
-  font-family: var(--font-dm-sans), sans-serif;
+  font-family: var(--font-dm-sans), var(--font-plex-arabic), sans-serif;
   font-size: 1rem;
   line-height: 1.625rem;
   font-weight: 400;
@@ -699,7 +699,7 @@
 }
 
 @utility type-body-sm {
-  font-family: var(--font-dm-sans), sans-serif;
+  font-family: var(--font-dm-sans), var(--font-plex-arabic), sans-serif;
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 400;
@@ -707,7 +707,7 @@
 }
 
 @utility type-body-xs {
-  font-family: var(--font-dm-sans), sans-serif;
+  font-family: var(--font-dm-sans), var(--font-plex-arabic), sans-serif;
   font-size: 0.75rem;
   line-height: 1.125rem;
   font-weight: 400;
@@ -715,41 +715,61 @@
 }
 
 @utility type-label-md {
-  font-family: var(--font-dm-sans), sans-serif;
+  font-family: var(--font-dm-sans), var(--font-plex-arabic), sans-serif;
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 500;
   letter-spacing: 0.021875rem;
+
+  /* Tracking pulls cursive Arabic letters apart. */
+  &:lang(ar) {
+    letter-spacing: 0;
+  }
 }
 
 @utility type-label-sm {
-  font-family: var(--font-dm-sans), sans-serif;
+  font-family: var(--font-dm-sans), var(--font-plex-arabic), sans-serif;
   font-size: 0.75rem;
   line-height: 1rem;
   font-weight: 500;
   letter-spacing: 0.01875rem;
+
+  /* Tracking pulls cursive Arabic letters apart. */
+  &:lang(ar) {
+    letter-spacing: 0;
+  }
 }
 
 @utility type-eyebrow-md {
-  font-family: var(--font-jetbrains-mono), monospace;
+  font-family: var(--font-jetbrains-mono), var(--font-plex-arabic), monospace;
   font-size: 0.75rem;
   line-height: 1rem;
   font-weight: 400;
   letter-spacing: 0.075rem;
   text-transform: uppercase;
+
+  /* Tracking pulls cursive Arabic letters apart. */
+  &:lang(ar) {
+    letter-spacing: 0;
+  }
 }
 
 @utility type-eyebrow-sm {
-  font-family: var(--font-jetbrains-mono), monospace;
+  font-family: var(--font-jetbrains-mono), var(--font-plex-arabic), monospace;
   font-size: 0.625rem;
   line-height: 0.9375rem;
   font-weight: 400;
   letter-spacing: 0.0875rem;
   text-transform: uppercase;
+
+  /* Tracking pulls cursive Arabic letters apart. */
+  &:lang(ar) {
+    letter-spacing: 0;
+  }
 }
 
 @utility type-data-md {
-  font-family: var(--font-jetbrains-mono), monospace;
+  font-family: var(--font-jetbrains-mono), var(--font-plex-arabic), monospace;
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 400;
@@ -757,7 +777,7 @@
 }
 
 @utility type-data-bold {
-  font-family: var(--font-jetbrains-mono), monospace;
+  font-family: var(--font-jetbrains-mono), var(--font-plex-arabic), monospace;
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 700;

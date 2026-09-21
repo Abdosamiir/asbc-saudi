@@ -1,8 +1,12 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { Button } from "../ui/button"
 
 export default function BackToTop() {
+  // Translation
+  const t = useTranslations("Footer")
+  // Functions
   const handleBackToTop = () => {
     window.scrollTo({
       top: 0,
@@ -16,7 +20,7 @@ export default function BackToTop() {
       variant="outline-on-navy"
       size="icon"
       onClick={handleBackToTop}
-      aria-label="Back to top"
+      aria-label={t("backToTop")}
       className="shrink-0"
     >
       ↑

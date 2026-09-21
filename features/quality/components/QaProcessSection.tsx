@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl"
+
 import Reveal from "@/shared/components/Reveal"
 import SectionHeading from "@/shared/components/SectionHeading"
 
@@ -6,14 +8,17 @@ import { QA_STEPS } from "../data/quality"
 
 /** "Our QA Process" — the four inspection stages. */
 export default function QaProcessSection() {
+  // Translation
+  const t = useTranslations("QualityProcess")
+
   return (
     <section className="bg-surface-sunken py-16 md:py-24">
       <div className="container">
         <Reveal>
           <SectionHeading
-            eyebrow="Quality Assurance"
-            title="Our QA Process"
-            description="A systematic approach to quality assurance at every stage of the welding process"
+            eyebrow={t("eyebrow")}
+            title={t("title")}
+            description={t("description")}
             className="max-w-xl"
           />
         </Reveal>

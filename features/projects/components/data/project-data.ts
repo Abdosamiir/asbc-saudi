@@ -1,64 +1,56 @@
-export type Project = {
+import type { Messages } from "next-intl"
+
+type FeaturedProjectKey = keyof Messages["ProjectsFeatured"]["items"]
+type ProjectTagKey = keyof Messages["ProjectsFeatured"]["tags"]
+type ProjectEntryKey = keyof Messages["ProjectsCompleted"]["items"]
+
+export type FeaturedProject = {
+  /** Title and description live under `ProjectsFeatured.items.<key>`. */
+  key: FeaturedProjectKey
   year: string
-  title: string
-  description: string
-  tags: string[]
+  tags: ProjectTagKey[]
 }
 
-export const featuredProjects: Project[] = [
+export const featuredProjects: FeaturedProject[] = [
   {
+    key: "maadenDeepWell",
     year: "2018",
-    title: "Maaden Phosphate Dee Well",
-    description:
-      "Installation of 2x deep well pump unit 450HP at 460m depth — one of the deepest well installations in the region.",
-    tags: ["450HP Motors", "460m Deep", "Deepwell Pumps"],
+    tags: ["hp450Motors", "depth460m", "deepwellPumps"],
   },
   {
+    key: "nwcTgcStation",
     year: "2019",
-    title: "NWC TGC Water Station",
-    description:
-      "Complete water installation and pipeline fabrication for Riyadh's major water transmission station.",
-    tags: [
-      '24" Water Supply',
-      "Pipeline Fabrication",
-      "Testing & Commissioning",
-    ],
+    tags: ["waterSupply24", "pipelineFabrication", "testingCommissioning"],
   },
   {
+    key: "alulaFirefighting",
     year: "2022",
-    title: "Royal Commission AlUla",
-    description:
-      "Firefighting system installation for one of Saudi Arabia's most prestigious heritage sites.",
-    tags: ["1000m2 Site", "MSP", "Design + Elect. + Joinery"],
+    tags: ["site1000m2", "msp", "designElectricalJoinery"],
   },
 ]
 
 export type ProjectEntry = {
   id: number
+  /** Category, title, description and location live under `ProjectsCompleted.items.<key>`. */
+  key: ProjectEntryKey
   year: number
-  category: string
-  title: string
-  description: string
-  location: string
+  /** Latin initials of the client, watermarked into the card in every locale. */
+  monogram: string
   featured?: boolean
 }
 
 export const projects: ProjectEntry[] = [
   {
     id: 1,
+    key: "alulaFirefighting",
     year: 2022,
-    category: "ROYAL COMMISSION",
-    title: "Firefighting pump set 1000 US GPM @145 PSI",
-    description: "Diesel + electric + jockey pumps",
-    location: "Royal Commission for AlUla",
+    monogram: "RC",
     featured: true,
   },
   {
     id: 2,
+    key: "tatweerPrequalification",
     year: 2023,
-    category: "PRE-QUALIFICATION",
-    title: "Prequalified: Tatweer Industrial City Project",
-    description: "Toledo Arabia — status B, conditionally approved",
-    location: "Toledo Arabia",
+    monogram: "TA",
   },
 ]
